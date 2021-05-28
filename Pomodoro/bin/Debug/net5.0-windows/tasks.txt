@@ -1,4 +1,2 @@
-DevbDipp.exe : revert the initialization
-*** DippMbxResource(mmap): Invalid argument
-old
-very new
+Update Excel for System Expertise
+Talk with Richard fro PCI devices

@@ -21,6 +21,14 @@ namespace Pomodoro
         {
             tasks = File.ReadAllLines(taskFileName);
             ddlTasks.Items.AddRange(tasks);
+            if(ddlTasks.Items.Count>0)
+            {
+                ddlTasks.SelectedIndex = 0;
+            }
+            else
+            {
+                ddlTasks.Text = "New Task";
+            }
         }
 
 
@@ -65,7 +73,14 @@ namespace Pomodoro
         {
             if (pomodoro != null)
             {
-                pomodoro.stop();
+                if (pomodoro.isRunning())
+                {
+                    pomodoro.pause();
+                }
+                else
+                {
+                    pomodoro.resume();
+                }
             }
         }
 
@@ -81,7 +96,7 @@ namespace Pomodoro
         private Pomodoro CreatePomodoroTimer()
         {
             if (rbtnPomodoro.Checked)
-                return new Pomodoro(ddlTasks.SelectedItem.ToString(), lblTime, 25);
+                return new Pomodoro(ddlTasks.Text, lblTime, 25);
 
             if (rbtnShortBreak.Checked)
                 return new Pomodoro("Short break", lblTime, 5);
@@ -89,19 +104,22 @@ namespace Pomodoro
             if(rbtnLongBreak.Checked)
                 return new Pomodoro("Long break", lblTime, 15);
 
-            return new Pomodoro(ddlTasks.SelectedItem.ToString(), lblTime, Convert.ToInt32(txtCustomTime.Text.Trim()));
+            return new Pomodoro(ddlTasks.Text, lblTime, Convert.ToInt32(txtCustomTime.Text.Trim()));
         }
 
         private void btnAddTask_Click(object sender, EventArgs e)
         {
             ddlTasks.Items.Add(ddlTasks.Text);
             UpdateTaskFile();
+            Logger.Log("Task: " + ddlTasks.Text + "; Added.");
         }
 
         private void btnRemoveTask_Click(object sender, EventArgs e)
         {
             ddlTasks.Items.Remove(ddlTasks.Text);
             UpdateTaskFile();
+            Logger.Log("Task: " + ddlTasks.Text + "; deleted.");
+
         }
 
         private void UpdateTaskFile()

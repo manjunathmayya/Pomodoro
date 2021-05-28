@@ -11,6 +11,8 @@ namespace Pomodoro
         void stop();
         void reset();
         bool isRunning();
+        void pause();
+        void resume();
     }
 
     public class Pomodoro : IPomodoro
@@ -54,6 +56,16 @@ namespace Pomodoro
         {
             init();
             Log("Reset");
+        }
+        public void pause()
+        {
+            timer.Stop();
+            Log("Paused");
+        }
+        public void resume()
+        {
+            timer.Start();
+            Log("Resumed");
         }
 
         private void init()

@@ -70,7 +70,7 @@ namespace Pomodoro
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(51, 23);
             this.btnStop.TabIndex = 2;
-            this.btnStop.Text = "Stop";
+            this.btnStop.Text = "||  /  >";
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
