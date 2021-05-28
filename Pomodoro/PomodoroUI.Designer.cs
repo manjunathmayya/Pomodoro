@@ -39,7 +39,9 @@ namespace Pomodoro
             this.rbtnCustom = new System.Windows.Forms.RadioButton();
             this.txtCustomTime = new System.Windows.Forms.TextBox();
             this.tblTask = new System.Windows.Forms.Label();
-            this.txtTask = new System.Windows.Forms.TextBox();
+            this.ddlTasks = new System.Windows.Forms.ComboBox();
+            this.btnAddTask = new System.Windows.Forms.Button();
+            this.btnRemoveTask = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblTime
@@ -142,19 +144,42 @@ namespace Pomodoro
             this.tblTask.TabIndex = 9;
             this.tblTask.Text = "Task";
             // 
-            // txtTask
+            // ddlTasks
             // 
-            this.txtTask.Location = new System.Drawing.Point(49, 8);
-            this.txtTask.Name = "txtTask";
-            this.txtTask.Size = new System.Drawing.Size(284, 23);
-            this.txtTask.TabIndex = 10;
+            this.ddlTasks.FormattingEnabled = true;
+            this.ddlTasks.Location = new System.Drawing.Point(49, 8);
+            this.ddlTasks.Name = "ddlTasks";
+            this.ddlTasks.Size = new System.Drawing.Size(233, 23);
+            this.ddlTasks.TabIndex = 11;
+            // 
+            // btnAddTask
+            // 
+            this.btnAddTask.Location = new System.Drawing.Point(288, 7);
+            this.btnAddTask.Name = "btnAddTask";
+            this.btnAddTask.Size = new System.Drawing.Size(19, 23);
+            this.btnAddTask.TabIndex = 12;
+            this.btnAddTask.Text = "+";
+            this.btnAddTask.UseVisualStyleBackColor = true;
+            this.btnAddTask.Click += new System.EventHandler(this.btnAddTask_Click);
+            // 
+            // btnRemoveTask
+            // 
+            this.btnRemoveTask.Location = new System.Drawing.Point(313, 7);
+            this.btnRemoveTask.Name = "btnRemoveTask";
+            this.btnRemoveTask.Size = new System.Drawing.Size(19, 23);
+            this.btnRemoveTask.TabIndex = 13;
+            this.btnRemoveTask.Text = "-";
+            this.btnRemoveTask.UseVisualStyleBackColor = true;
+            this.btnRemoveTask.Click += new System.EventHandler(this.btnRemoveTask_Click);
             // 
             // PomodoroUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 165);
-            this.Controls.Add(this.txtTask);
+            this.Controls.Add(this.btnRemoveTask);
+            this.Controls.Add(this.btnAddTask);
+            this.Controls.Add(this.ddlTasks);
             this.Controls.Add(this.tblTask);
             this.Controls.Add(this.txtCustomTime);
             this.Controls.Add(this.rbtnCustom);
@@ -184,7 +209,9 @@ namespace Pomodoro
         private System.Windows.Forms.RadioButton rbtnCustom;
         private System.Windows.Forms.TextBox txtCustomTime;
         private System.Windows.Forms.Label tblTask;
-        private System.Windows.Forms.TextBox txtTask;
+        private System.Windows.Forms.ComboBox ddlTasks;
+        private System.Windows.Forms.Button btnAddTask;
+        private System.Windows.Forms.Button btnRemoveTask;
     }
 }
 

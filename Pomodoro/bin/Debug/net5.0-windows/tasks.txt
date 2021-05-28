@@ -1,0 +1,4 @@
+DevbDipp.exe : revert the initialization
+*** DippMbxResource(mmap): Invalid argument
+old
+very new

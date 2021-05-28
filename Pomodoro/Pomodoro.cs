@@ -19,37 +19,47 @@ namespace Pomodoro
         Timer timer;
         private int _minutes;
         private DateTime _pomodoro_duration;
+        private string _task;
 
-        public Pomodoro(Label label, int minutes)
+        public Pomodoro(string task, Label label, int minutes)
         {
             CreateNewTimer();
 
+            _task = task;
             _label = label;
             _minutes = minutes;
-            reset();
+            init();
         }
 
         private void CreateNewTimer()
         {
             timer = new Timer();
-            timer.Interval = 1000;
+            timer.Interval = 1000;            
             timer.Tick += new EventHandler(this.timer_Tick);
         }
 
         public void start()
         {
             timer.Start();
+            Log("Start");
         }
 
         public void stop()
         {
             timer.Stop();
+            Log("Stop");
         }
 
         public void reset()
         {
+            init();
+            Log("Reset");
+        }
+
+        private void init()
+        {
             UpdatePomodoroDuration(_minutes, 0);
-            _label.Text = FormatTime( _minutes, 0);
+            _label.Text = FormatTime(_minutes, 0);
         }
 
         public bool isRunning()
@@ -75,6 +85,7 @@ namespace Pomodoro
                 stop();
                 reset();
                 NotifyUser();
+                Log("Completed");
             }
             else
             {
@@ -133,6 +144,11 @@ namespace Pomodoro
             }
 
             return time;
+        }
+
+        private void Log(string text)
+        {
+            Logger.Log("Task: " + _task + "; " + text);
         }
     }
 }

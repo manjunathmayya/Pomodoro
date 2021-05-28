@@ -20,7 +20,7 @@ namespace Pomodoro
             selectedLevel = level;
         }
 
-        public static void Log(string text, Levels level = Levels.DEBUG)
+        public static void Log(string text, Levels level = Levels.INFO)
         {
             if (selectedLevel == Levels.ALL || selectedLevel == level)
             {
