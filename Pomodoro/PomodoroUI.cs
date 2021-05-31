@@ -14,7 +14,7 @@ namespace Pomodoro
         public PomodoroUI()
         {
             InitializeComponent();
-            LoadTasks();
+            LoadTasks();            
         }
 
         private void LoadTasks()

@@ -2,6 +2,8 @@
 using System.Threading;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
+using System.Media;
+using System.Threading.Tasks;
 
 namespace Pomodoro
 {
@@ -106,6 +108,7 @@ namespace Pomodoro
                 Logger.LogWithElapsedTime(_task, "Completed", getElapsedTimeInSeconds());
                 stop();
                 init();
+                MakeSomeNoise();
                 NotifyUser();
             }
             else
@@ -127,6 +130,18 @@ namespace Pomodoro
 
             notification.ShowBalloonTip(1000);
             notification.Dispose();
+        }
+
+        private static void MakeSomeNoise()
+        {
+            Task task = new Task(PlaySound);
+            task.Start();
+        }
+
+        private static void PlaySound()
+        {
+            SoundPlayer my_wave_file = new SoundPlayer("alarm.wav");
+            my_wave_file.PlaySync();            
         }
 
         private static bool TimeUp(int minutes)

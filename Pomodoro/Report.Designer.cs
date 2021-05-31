@@ -32,17 +32,18 @@ namespace Pomodoro
             this.grdTaskInfo = new System.Windows.Forms.DataGridView();
             this.lblTaskTimeReport = new System.Windows.Forms.LinkLabel();
             this.lblTaskLog = new System.Windows.Forms.LinkLabel();
+            this.lblDayWiseReport = new System.Windows.Forms.LinkLabel();
             ((System.ComponentModel.ISupportInitialize)(this.grdTaskInfo)).BeginInit();
             this.SuspendLayout();
             // 
-            // grdLogs
+            // grdTaskInfo
             // 
             this.grdTaskInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grdTaskInfo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdTaskInfo.Location = new System.Drawing.Point(53, 87);
-            this.grdTaskInfo.Name = "grdLogs";
+            this.grdTaskInfo.Name = "grdTaskInfo";
             this.grdTaskInfo.RowTemplate.Height = 25;
             this.grdTaskInfo.Size = new System.Drawing.Size(536, 237);
             this.grdTaskInfo.TabIndex = 0;
@@ -69,11 +70,23 @@ namespace Pomodoro
             this.lblTaskLog.Text = "Task Log";
             this.lblTaskLog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lblTaskLog_LinkClicked);
             // 
+            // lblDayWiseReport
+            // 
+            this.lblDayWiseReport.AutoSize = true;
+            this.lblDayWiseReport.Location = new System.Drawing.Point(331, 37);
+            this.lblDayWiseReport.Name = "lblDayWiseReport";
+            this.lblDayWiseReport.Size = new System.Drawing.Size(93, 15);
+            this.lblDayWiseReport.TabIndex = 3;
+            this.lblDayWiseReport.TabStop = true;
+            this.lblDayWiseReport.Text = "Day Wise Report";
+            this.lblDayWiseReport.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblDayWiseReport_MouseClick);
+            // 
             // Report
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(633, 347);
+            this.Controls.Add(this.lblDayWiseReport);
             this.Controls.Add(this.lblTaskLog);
             this.Controls.Add(this.lblTaskTimeReport);
             this.Controls.Add(this.grdTaskInfo);
@@ -90,6 +103,7 @@ namespace Pomodoro
         private System.Windows.Forms.DataGridView grdTaskInfo;
         private System.Windows.Forms.LinkLabel lblTaskTimeReport;
         private System.Windows.Forms.LinkLabel lblTaskLog;
+        private System.Windows.Forms.LinkLabel lblDayWiseReport;
     }
 }
 

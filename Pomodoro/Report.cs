@@ -4,6 +4,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Globalization;
 
 namespace Pomodoro
 {
@@ -70,6 +71,47 @@ namespace Pomodoro
         private void lblTaskLog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             LoadTaskInfo();
+        }
+
+        private void lblDayWiseReport_MouseClick(object sender, MouseEventArgs e)
+        {
+            DataTable dtReport = new DataTable();
+            dtReport.Columns.Add("Task");
+            dtReport.Columns.Add("TimeTaken");
+
+            var groups = dtTaskInfo.AsEnumerable().GroupBy(row => Convert.ToDateTime(row["Time"]).ToString("dd-MMM-yy"));
+
+            foreach(var group in groups)
+            {
+                var groups2 = group.OrderBy(row => row["Time"]).GroupBy(row => row["Task"]);
+
+
+
+                var sum = group.Sum(r => Convert.ToInt32(r.Field<string>("TimeTaken") == "" ? 0 : r.Field<string>("TimeTaken")));
+                int seconds = sum % 60;
+                int minutes = sum / 60;
+                string time = minutes + ":" + seconds.ToString("00");
+
+
+
+                dtReport.Rows.Add("", "");
+                dtReport.Rows.Add( group.Key, time);
+                dtReport.Rows.Add("", "");
+
+                foreach (var group2 in groups2)
+                {
+                    sum = group2.Sum(r => Convert.ToInt32(r.Field<string>("TimeTaken") == "" ? 0 : r.Field<string>("TimeTaken")));
+
+                    seconds = sum % 60;
+                    minutes = sum / 60;
+                    time = minutes + ":" + seconds.ToString("00");
+
+
+                    dtReport.Rows.Add(group2.Key, time);
+                }
+            }
+
+            grdTaskInfo.DataSource = dtReport;
         }
     }
 }
