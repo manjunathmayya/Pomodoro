@@ -13,6 +13,7 @@ namespace Pomodoro
         bool isRunning();
         void pause();
         void resume();
+        bool isPaused();
     }
 
     public class Pomodoro : IPomodoro
@@ -22,6 +23,7 @@ namespace Pomodoro
         private int _minutes;
         private DateTime _pomodoro_duration;
         private string _task;
+        private bool _paused;
 
         public Pomodoro(string task, Label label, int minutes)
         {
@@ -30,6 +32,7 @@ namespace Pomodoro
             _task = task;
             _label = label;
             _minutes = minutes;
+            _paused = false;
             init();
         }
 
@@ -48,22 +51,23 @@ namespace Pomodoro
 
         public void stop()
         {
-            timer.Stop();
-            Log("Stop");
+            timer.Stop();            
         }
 
         public void reset()
         {
+            Logger.LogWithElapsedTime(_task, "Reset", getElapsedTimeInSeconds());
             init();
-            Log("Reset");
         }
         public void pause()
         {
-            timer.Stop();
+            _paused = true;
             Log("Paused");
+            timer.Stop();
         }
         public void resume()
         {
+            _paused = false;
             timer.Start();
             Log("Resumed");
         }
@@ -72,11 +76,16 @@ namespace Pomodoro
         {
             UpdatePomodoroDuration(_minutes, 0);
             _label.Text = FormatTime(_minutes, 0);
+            _paused = false;
         }
 
         public bool isRunning()
         {
             return timer.Enabled;
+        }
+        public bool isPaused()
+        {
+            return _paused;
         }
 
 
@@ -94,10 +103,10 @@ namespace Pomodoro
 
             if (TimeUp(minutes))
             {
+                Logger.LogWithElapsedTime(_task, "Completed", getElapsedTimeInSeconds());
                 stop();
-                reset();
+                init();
                 NotifyUser();
-                Log("Completed");
             }
             else
             {
@@ -160,7 +169,19 @@ namespace Pomodoro
 
         private void Log(string text)
         {
-            Logger.Log("Task: " + _task + "; " + text);
+            Logger.Log(_task, text);
+        }
+
+        private string getElapsedTimeInSeconds()
+        {
+            int min = _minutes - _pomodoro_duration.Minute;
+            int minutes = _minutes -1 - _pomodoro_duration.Minute;
+            
+            if(minutes < 0)
+                minutes = 0;
+
+            int seconds = 60 - _pomodoro_duration.Second;
+            return (minutes * 60 + seconds).ToString();
         }
     }
 }

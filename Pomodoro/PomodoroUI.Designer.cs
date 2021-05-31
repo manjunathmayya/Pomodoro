@@ -42,6 +42,7 @@ namespace Pomodoro
             this.ddlTasks = new System.Windows.Forms.ComboBox();
             this.btnAddTask = new System.Windows.Forms.Button();
             this.btnRemoveTask = new System.Windows.Forms.Button();
+            this.lblReport = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblTime
@@ -172,11 +173,23 @@ namespace Pomodoro
             this.btnRemoveTask.UseVisualStyleBackColor = true;
             this.btnRemoveTask.Click += new System.EventHandler(this.btnRemoveTask_Click);
             // 
+            // lblReport
+            // 
+            this.lblReport.AutoSize = true;
+            this.lblReport.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.lblReport.Location = new System.Drawing.Point(258, 147);
+            this.lblReport.Name = "lblReport";
+            this.lblReport.Size = new System.Drawing.Size(42, 15);
+            this.lblReport.TabIndex = 14;
+            this.lblReport.Text = "Report";
+            this.lblReport.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblReport_MouseClick);
+            // 
             // PomodoroUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(339, 165);
+            this.Controls.Add(this.lblReport);
             this.Controls.Add(this.btnRemoveTask);
             this.Controls.Add(this.btnAddTask);
             this.Controls.Add(this.ddlTasks);
@@ -212,6 +225,7 @@ namespace Pomodoro
         private System.Windows.Forms.ComboBox ddlTasks;
         private System.Windows.Forms.Button btnAddTask;
         private System.Windows.Forms.Button btnRemoveTask;
+        private System.Windows.Forms.Label lblReport;
     }
 }
 

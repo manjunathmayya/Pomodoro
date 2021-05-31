@@ -37,7 +37,11 @@ namespace Pomodoro
 
             if (pomodoro != null && pomodoro.isRunning())
             {
-                MessageBox.Show("Timer already running!. Stop and start in case you want to switch timers");
+                MessageBox.Show("Timer already running!");
+            }
+            else if(pomodoro != null && pomodoro.isPaused())
+            {
+                MessageBox.Show("Timer Paused! Cant Start now.");
             }
             else
             {
@@ -111,14 +115,14 @@ namespace Pomodoro
         {
             ddlTasks.Items.Add(ddlTasks.Text);
             UpdateTaskFile();
-            Logger.Log("Task: " + ddlTasks.Text + "; Added.");
+            Logger.Log(ddlTasks.Text, "Added");
         }
 
         private void btnRemoveTask_Click(object sender, EventArgs e)
         {
+            Logger.Log(ddlTasks.Text, "Deleted");
             ddlTasks.Items.Remove(ddlTasks.Text);
             UpdateTaskFile();
-            Logger.Log("Task: " + ddlTasks.Text + "; deleted.");
 
         }
 
@@ -131,6 +135,12 @@ namespace Pomodoro
             }
 
             File.WriteAllLines(taskFileName, taskList.ToArray());
+        }
+
+        private void lblReport_MouseClick(object sender, MouseEventArgs e)
+        {
+            Report report = new Report();
+            report.Show();
         }
     }
 

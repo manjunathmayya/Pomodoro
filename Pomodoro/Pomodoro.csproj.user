@@ -4,5 +4,8 @@
     <Compile Update="PomodoroUI.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="Report.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
