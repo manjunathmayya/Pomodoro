@@ -16,4 +16,4 @@ E:\Projects\Pomodoro\Pomodoro\obj\Debug\net5.0-windows\Pomodoro.dll
 E:\Projects\Pomodoro\Pomodoro\obj\Debug\net5.0-windows\ref\Pomodoro.dll
 E:\Projects\Pomodoro\Pomodoro\obj\Debug\net5.0-windows\Pomodoro.pdb
 E:\Projects\Pomodoro\Pomodoro\obj\Debug\net5.0-windows\Pomodoro.genruntimeconfig.cache
-E:\Projects\Pomodoro\Pomodoro\obj\Debug\net5.0-windows\Pomodoro.Report.resources
+E:\Projects\Pomodoro\Pomodoro\obj\Debug\net5.0-windows\Pomodoro.ReportTemplate.resources
